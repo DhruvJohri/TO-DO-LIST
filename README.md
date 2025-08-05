@@ -28,7 +28,7 @@
 
 | Light Mode 🌞 | Dark Mode 🌚 |
 |--------------|--------------|
-| ![Light Mode Screenshot](https://github.com/DhruvJohri/TO-DO-LIST/blob/main/To%20Do%20light.png) | ![Dark Mode Screenshot](./screenshots/dark-mode.png) |
+| ![Light Mode Screenshot](https://github.com/DhruvJohri/TO-DO-LIST/blob/main/To%20Do%20light.png) | ![Dark Mode Screenshot](https://github.com/DhruvJohri/TO-DO-LIST/blob/main/To%20do%20dark.png) |
 
 > 💡 Tip: Replace the above images with actual screenshots from your project (or screen recordings as GIFs).
 
