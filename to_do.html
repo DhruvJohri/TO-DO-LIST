@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neon To-do List App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f0f1c;
+      --card-dark: #1a1a2e;
+      --text-dark: #e0e0f0;
+      --primary: #a855f7;
+      --accent: #7f56d9;
+      --delete: #ff5f7e;
+
+      --bg-light: #f4f4fa;
+      --card-light: #ffffff;
+      --text-light: #1a1a1a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 1000;
+    }
+
+    .toggle-btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      background-color: var(--card-dark);
+      color: var(--text-dark);
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    body.light .toggle-btn {
+      background-color: var(--card-light);
+      color: var(--text-light);
+      border: 1px solid #ddd;
+    }
+
+    .container {
+      margin-top: 70px;
+      width: 92%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .input-section {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    input {
+      padding: 10px 14px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: none;
+      background-color: var(--card-dark);
+      color: var(--text-dark);
+      outline: none;
+      flex: 1;
+      min-width: 180px;
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--primary);
+    }
+
+    #todo-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .todo-item {
+      background-color: var(--card-dark);
+      padding: 12px 16px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s;
+    }
+
+    .todo-item:hover {
+      transform: scale(1.02);
+    }
+
+    .todo-item button {
+      background-color: var(--delete);
+      padding: 6px 10px;
+      font-size: 13px;
+      border-radius: 6px;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    /* Light Mode */
+    body.light {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    body.light input {
+      background-color: var(--card-light);
+      color: var(--text-light);
+    }
+
+    body.light .todo-item {
+      background-color: var(--card-light);
+      color: var(--text-light);
+    }
+
+    body.light button {
+      color: white;
+    }
+
+    body.light .todo-item button {
+      background-color: #ff5f7e;
+      color: white;
+    }
+
+    @media screen and (max-width: 480px) {
+      .toggle-btn {
+        font-size: 13px;
+        padding: 6px 12px;
+      }
+
+      .input-section {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      input, button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-toggle">
+    <button class="toggle-btn" onclick="toggleTheme()">☀️ / 🌙</button>
+  </div>
+
+  <div class="container">
+    <h1>🪄 To-do List</h1>
+
+    <div class="input-section">
+      <input type="text" placeholder="Add a new task" />
+      <button onclick="Addtodo()">Add</button>
+    </div>
+
+    <div id="todo-container"></div>
+  </div>
+
+  <footer>
+    <p>Made with 💜 by Dhruv Johri | &copy; 2025</p>
+  </footer>
+
+  <script>
+    let ctr = 1;
+
+    function Addtodo() {
+      const input = document.querySelector("input");
+      const value = input.value.trim();
+      if (!value) return;
+
+      const item = document.createElement("div");
+      item.className = "todo-item";
+      item.setAttribute("id", ctr);
+      item.innerHTML = `
+        <div>${ctr}. ${value}</div>
+        <button onclick="Deletetodo(${ctr})">Delete</button>
+      `;
+
+      document.getElementById("todo-container").appendChild(item);
+      input.value = "";
+      ctr++;
+    }
+
+    function Deletetodo(index) {
+      const item = document.getElementById(index);
+      item?.remove();
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+    }
+  </script>
+</body>
+</html>
