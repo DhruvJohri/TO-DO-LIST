@@ -47,3 +47,24 @@
 1. **Clone the repository**  
    ```bash
    git clone https://github.com/dhruvjohri/TO-DO-LIST.git
+   ## 🛠️ Getting Started
+
+2. **Navigate to the folder**
+   ```bash
+   cd TO-DO-LIST
+Open index.html in your browser
+That’s it! You’re all set to go. ✅
+
+🌈 Inspiration
+A clean and peaceful space to organize your thoughts.
+Inspired by GitHub’s purple palette, minimalism, and productivity.
+
+👨‍🎨 Author
+Dhruv Johri
+🔗 GitHub • ✨ Passionate Web Developer • 💜 UI Aesthetics
+
+📄 License
+This project is licensed under the [MIT License](https://github.com/DhruvJohri/TO-DO-LIST/blob/main/LICENSE).
+Feel free to use, fork, and improve it!
+
+
